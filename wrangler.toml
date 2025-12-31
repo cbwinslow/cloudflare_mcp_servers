@@ -1,0 +1,22 @@
+name = "mcp-server"
+main = "src/index.ts"
+compatibility_date = "2024-01-01"
+
+# KV Namespaces for storing MCP server state
+# [[kv_namespaces]]
+# binding = "MCP_STATE"
+# id = "your-kv-namespace-id"
+
+# Durable Objects for stateful MCP operations
+# [durable_objects]
+# bindings = [
+#   { name = "MCP_SESSION", class_name = "MCPSession" }
+# ]
+
+# Environment variables
+[vars]
+# MCP_SERVER_NAME = "My MCP Server"
+
+# Secrets (set via: wrangler secret put <KEY>)
+# - CLOUDFLARE_API_TOKEN
+# - MCP_API_KEY
