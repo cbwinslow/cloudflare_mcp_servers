@@ -140,6 +140,37 @@
       ],
       "capabilities": ["reasoning", "planning", "execution", "memory", "learning"],
       "description": "Autonomous agent framework"
+    },
+    "postman": {
+      "name": "Postman MCP Server",
+      "command": "cloudflare",
+      "deployment": {
+        "type": "worker",
+        "scriptPath": "src/servers/postman-server.ts",
+        "workerName": "mcp-postman",
+        "route": "postman.your-domain.workers.dev"
+      },
+      "env": {
+        "POSTMAN_API_KEY": "${POSTMAN_API_KEY}",
+        "MCP_SERVER_NAME": "Postman MCP Server"
+      },
+      "capabilities": ["collections", "environments", "mocks", "monitors"],
+      "description": "API testing and collection management"
+    },
+    "vscode": {
+      "name": "VSCode MCP Server",
+      "command": "cloudflare",
+      "deployment": {
+        "type": "worker",
+        "scriptPath": "src/servers/vscode-server.ts",
+        "workerName": "mcp-vscode",
+        "route": "vscode.your-domain.workers.dev"
+      },
+      "env": {
+        "MCP_SERVER_NAME": "VSCode MCP Server"
+      },
+      "capabilities": ["extensions", "workspace", "settings", "debugging"],
+      "description": "VSCode integration and workspace management"
     }
   },
   "deploymentConfig": {
