@@ -288,7 +288,7 @@ async function callTool(name: string, args: any, env: Env): Promise<any> {
   switch (name) {
     case 'execute_task': {
       const taskId = crypto.randomUUID();
-      const { task, tools = [], maxSteps = 10, temperature = 0.7 } = args;
+      const { task, tools = [], maxSteps = 10 } = args;
 
       // Decompose task into steps
       const steps = await decomposeTask(task, tools, env);
@@ -454,7 +454,7 @@ async function callTool(name: string, args: any, env: Env): Promise<any> {
           'Task execution completed',
           `${task.steps.length} steps planned and executed`,
         ],
-        improvements: [],
+        improvements: [] as string[],
       };
 
       if (reflection.successRate < 1.0) {
