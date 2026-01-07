@@ -1,0 +1,220 @@
+{
+  "mcpServers": {
+    "govinfo": {
+      "name": "GovInfo.gov MCP Server",
+      "command": "cloudflare",
+      "deployment": {
+        "type": "worker",
+        "scriptPath": "src/servers/govinfo-server.ts",
+        "workerName": "mcp-govinfo",
+        "route": "govinfo.your-domain.workers.dev"
+      },
+      "env": {
+        "GOVINFO_API_KEY": "${GOVINFO_API_KEY}",
+        "MCP_SERVER_NAME": "GovInfo MCP Server"
+      },
+      "capabilities": ["bills", "regulations", "congressional-record", "documents"],
+      "description": "Access U.S. Government documents and publications"
+    },
+    "congress": {
+      "name": "Congress.gov MCP Server",
+      "command": "cloudflare",
+      "deployment": {
+        "type": "worker",
+        "scriptPath": "src/servers/congress-server.ts",
+        "workerName": "mcp-congress",
+        "route": "congress.your-domain.workers.dev"
+      },
+      "env": {
+        "CONGRESS_API_KEY": "${CONGRESS_API_KEY}",
+        "MCP_SERVER_NAME": "Congress MCP Server"
+      },
+      "capabilities": ["legislation", "members", "committees", "votes"],
+      "description": "Access Congressional legislation and member data"
+    },
+    "openstates": {
+      "name": "OpenStates MCP Server",
+      "command": "cloudflare",
+      "deployment": {
+        "type": "worker",
+        "scriptPath": "src/servers/openstates-server.ts",
+        "workerName": "mcp-openstates",
+        "route": "openstates.your-domain.workers.dev"
+      },
+      "env": {
+        "OPENSTATES_API_KEY": "${OPENSTATES_API_KEY}",
+        "MCP_SERVER_NAME": "OpenStates MCP Server"
+      },
+      "capabilities": ["state-bills", "legislators", "committees", "sessions"],
+      "description": "Access state legislature data from all US states"
+    },
+    "langchain": {
+      "name": "LangChain MCP Server",
+      "command": "cloudflare",
+      "deployment": {
+        "type": "worker",
+        "scriptPath": "src/servers/langchain-server.ts",
+        "workerName": "mcp-langchain",
+        "route": "langchain.your-domain.workers.dev"
+      },
+      "env": {
+        "LANGCHAIN_API_KEY": "${LANGCHAIN_API_KEY}",
+        "OPENAI_API_KEY": "${OPENAI_API_KEY}",
+        "MCP_SERVER_NAME": "LangChain MCP Server"
+      },
+      "capabilities": ["chains", "agents", "embeddings", "vectorstore"],
+      "description": "Execute LangChain chains and agents"
+    },
+    "langfuse": {
+      "name": "LangFuse MCP Server",
+      "command": "cloudflare",
+      "deployment": {
+        "type": "worker",
+        "scriptPath": "src/servers/langfuse-server.ts",
+        "workerName": "mcp-langfuse",
+        "route": "langfuse.your-domain.workers.dev"
+      },
+      "env": {
+        "LANGFUSE_PUBLIC_KEY": "${LANGFUSE_PUBLIC_KEY}",
+        "LANGFUSE_SECRET_KEY": "${LANGFUSE_SECRET_KEY}",
+        "MCP_SERVER_NAME": "LangFuse MCP Server"
+      },
+      "capabilities": ["tracing", "metrics", "analytics", "monitoring"],
+      "description": "LLM observability and tracing"
+    },
+    "cloudflare": {
+      "name": "Cloudflare MCP Server",
+      "command": "cloudflare",
+      "deployment": {
+        "type": "worker",
+        "scriptPath": "src/servers/cloudflare-server.ts",
+        "workerName": "mcp-cloudflare",
+        "route": "cloudflare.your-domain.workers.dev"
+      },
+      "env": {
+        "CLOUDFLARE_API_TOKEN": "${CLOUDFLARE_API_TOKEN}",
+        "CLOUDFLARE_ACCOUNT_ID": "${CLOUDFLARE_ACCOUNT_ID}",
+        "MCP_SERVER_NAME": "Cloudflare MCP Server"
+      },
+      "capabilities": ["workers", "kv", "r2", "analytics", "dns"],
+      "description": "Manage Cloudflare Workers and resources"
+    },
+    "gemini": {
+      "name": "Gemini MCP Server",
+      "command": "cloudflare",
+      "deployment": {
+        "type": "worker",
+        "scriptPath": "src/servers/gemini-server.ts",
+        "workerName": "mcp-gemini",
+        "route": "gemini.your-domain.workers.dev"
+      },
+      "env": {
+        "GEMINI_API_KEY": "${GEMINI_API_KEY}",
+        "MCP_SERVER_NAME": "Gemini MCP Server"
+      },
+      "capabilities": ["text-generation", "vision", "code-generation", "chat"],
+      "description": "Google Gemini AI model integration"
+    },
+    "agent-zero": {
+      "name": "Agent-Zero MCP Server",
+      "command": "cloudflare",
+      "deployment": {
+        "type": "worker",
+        "scriptPath": "src/servers/agent-zero-server.ts",
+        "workerName": "mcp-agent-zero",
+        "route": "agent-zero.your-domain.workers.dev"
+      },
+      "env": {
+        "OPENAI_API_KEY": "${OPENAI_API_KEY}",
+        "MCP_SERVER_NAME": "Agent-Zero MCP Server"
+      },
+      "kvNamespaces": [
+        {
+          "binding": "AGENT_ZERO_STATE",
+          "id": "${AGENT_ZERO_STATE_KV_ID}"
+        },
+        {
+          "binding": "AGENT_ZERO_MEMORY",
+          "id": "${AGENT_ZERO_MEMORY_KV_ID}"
+        }
+      ],
+      "capabilities": ["reasoning", "planning", "execution", "memory", "learning"],
+      "description": "Autonomous agent framework"
+    },
+    "postman": {
+      "name": "Postman MCP Server",
+      "command": "cloudflare",
+      "deployment": {
+        "type": "worker",
+        "scriptPath": "src/servers/postman-server.ts",
+        "workerName": "mcp-postman",
+        "route": "postman.your-domain.workers.dev"
+      },
+      "env": {
+        "POSTMAN_API_KEY": "${POSTMAN_API_KEY}",
+        "MCP_SERVER_NAME": "Postman MCP Server"
+      },
+      "capabilities": ["collections", "environments", "mocks", "monitors"],
+      "description": "API testing and collection management"
+    },
+    "vscode": {
+      "name": "VSCode MCP Server",
+      "command": "cloudflare",
+      "deployment": {
+        "type": "worker",
+        "scriptPath": "src/servers/vscode-server.ts",
+        "workerName": "mcp-vscode",
+        "route": "vscode.your-domain.workers.dev"
+      },
+      "env": {
+        "MCP_SERVER_NAME": "VSCode MCP Server"
+      },
+      "capabilities": ["extensions", "workspace", "settings", "debugging"],
+      "description": "VSCode integration and workspace management"
+    }
+  },
+  "deploymentConfig": {
+    "platform": "cloudflare",
+    "apiEndpoint": "https://api.cloudflare.com/client/v4",
+    "defaultCompatibilityDate": "2024-01-01",
+    "defaultRoutePattern": "*.workers.dev"
+  },
+  "orchestration": {
+    "enabled": true,
+    "coordinator": "agent-zero",
+    "patterns": {
+      "sequential": {
+        "description": "Execute agents one after another",
+        "example": ["govinfo", "langchain"]
+      },
+      "parallel": {
+        "description": "Execute agents simultaneously",
+        "maxConcurrent": 5
+      },
+      "conditional": {
+        "description": "Execute agents based on conditions"
+      }
+    }
+  },
+  "monitoring": {
+    "enabled": true,
+    "logLevel": "info",
+    "metrics": ["requests", "latency", "errors", "tokens"],
+    "alerting": {
+      "enabled": false,
+      "channels": []
+    }
+  },
+  "security": {
+    "apiKeyRotation": "90d",
+    "rateLimiting": {
+      "enabled": true,
+      "requestsPerMinute": 60
+    },
+    "ipWhitelist": [],
+    "cors": {
+      "enabled": true,
+      "allowedOrigins": ["*"]
+    }
+  }
+}

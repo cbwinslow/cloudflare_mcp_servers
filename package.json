@@ -7,6 +7,8 @@
     "dev": "wrangler dev",
     "deploy": "node scripts/deploy.js",
     "deploy:worker": "wrangler deploy",
+    "deploy:all": "node scripts/deploy-all.js --all",
+    "deploy:server": "node scripts/deploy-all.js",
     "build": "tsc",
     "setup": "node scripts/setup.js",
     "test": "node scripts/test.js",
